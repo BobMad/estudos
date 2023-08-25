@@ -1,9 +1,12 @@
-from django.urls import path
-
-from . import views
+from django.urls import path, include
+from rest_framework import routers
+from meusEstudos.views import DisciplinaViewSet
 
 app_name = "meusEstudos"
+
+router = routers.DefaultRouter()
+router.register('disciplinas', DisciplinaViewSet, basename='Disciplinas')
+
 urlpatterns = [
-    path("", views.index, name="index"),
-    path('<int:disciplina_id>', views.index, name='disciplinas'),
+    path("", include(router.urls)),
 ]
