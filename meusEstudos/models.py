@@ -29,9 +29,19 @@ class Subtopico(models.Model):
     data_criacao = models.DateTimeField()
     data_atualizacao = models.DateTimeField()
 
+    def __str__(self):
+        return self.subtopico
+
 
 class Edital(models.Model):
     orgao = models.CharField(max_length=250)
     cargo = models.CharField(max_length=250)
     data_prova = models.DateTimeField()
     data_edital = models.DateTimeField()
+    disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
+    topico = models.ForeignKey(Topico, on_delete=models.CASCADE)
+    subtopico = models.ForeignKey(Subtopico, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.orgao
+
